@@ -1,0 +1,25 @@
+
+
+CREATE COMPUTE MODULE InsertIntoDB_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		--Get data from DB:
+		DECLARE EMP ROW;
+		SET EMP.Result[] = SELECT * FROM Database.SYSTEM.EMP where EMP.NAME='anurag';
+		
+		--Insert into DB
+		INSERT INTO Database.SYSTEM.EMP VALUES(InputRoot.XMLNSC.NAME.FIRSTNAME);
+		
+		
+		--For error capturing:
+		-- Make an incorrect database insert ( for eg: primary key violation)
+			INSERT INTO Database.SYSTEM.EMP VALUES(InputRoot.XMLNSC.NAME.FIRSTNAME);
+			
+			--send error details to output
+			SET OutputRoot.XMLNSC.ErrorInfo = 'Error Reported: ' ||SQLSTATE|| ' ' || SQLERRORTEXT;
+			PROPAGATE TO TERMINAL 'failure';
+		RETURN FALSE;
+	END;
+
+END MODULE;
