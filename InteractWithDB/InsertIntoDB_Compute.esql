@@ -6,7 +6,7 @@ CREATE COMPUTE MODULE InsertIntoDB_Compute
 
 		--Get data from DB:
 		DECLARE EMP ROW;
-		SET EMP.Result[] = SELECT * FROM Database.SYSTEM.EMP where EMP.NAME='anurag';
+		SET EMP.Result[] = SELECT * FROM Database.SYSTEM.EMP where EMP.NAME='anurag';--
 		
 		--Insert into DB
 		INSERT INTO Database.SYSTEM.EMP VALUES(InputRoot.XMLNSC.NAME.FIRSTNAME);
