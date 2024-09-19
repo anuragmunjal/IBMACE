@@ -1,4 +1,7 @@
 pipeline {
+    //Create a pipeline project and put your code in the master branch in git hub. 
+    //Then simply paste this script in the pipeline script and edit the ACE application name if required.
+    //Edit the path of mqsi commands as per your system.
    agent any
 
     stages {
