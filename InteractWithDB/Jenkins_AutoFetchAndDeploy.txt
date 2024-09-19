@@ -1,0 +1,41 @@
+pipeline {
+   agent any
+
+    stages {
+      stage('Getting the latest code from Github') {
+         steps {
+            
+            deleteDir()
+            git 'https://github.com/anuragmunjal/IBMACE.git'
+         }
+      }
+      stage('Attempting to create the Bar file') {
+        steps {
+                        
+
+        bat label: '', script: '''
+echo off
+set projectName=InteractWithDB
+"C:\\Program Files\\IBM\\ACE\\12.0.12.4\\tools\\mqsicreatebar.exe" -data . -b %projectName%.bar -a %projectName% -cleanBuild
+'''
+}
+      }
+      stage('Attempting to deploy the Bar file') {
+ steps {
+
+ bat label: '', script: '''
+echo off
+set projectName=InteractWithDB
+set workspace=%cd%
+cd C:\\Program Files\\IBM\\ACE\\12.0.12.4\\server\\bin\\
+call .\\mqsiprofile.cmd
+cd %workspace%
+mqsideploy NODE1 -e EG1 -a %projectName%.bar
+'''
+//set projectName=InteractWithDB
+
+archiveArtifacts 'InteractWithDB.bar'
+}
+ }
+ }
+}
