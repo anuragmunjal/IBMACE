@@ -5,6 +5,7 @@
     <translation xmi:type="utility:TranslatableString" key="InsertIntoDB" bundleName="InsertIntoDB" pluginId="InteractWithDB"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/InteractWithDB/icons/full/obj16/InsertIntoDB.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/InteractWithDB/icons/full/obj30/InsertIntoDB.gif"/>
+    <longDescription xmi:type="utility:ConstantString" string="updating 1"/>
     <composition>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="271,84" dataSource="ANURAG_DSN" computeExpression="esql://routine/#InsertIntoDB_Compute.Main" throwExceptionOnDatabaseError="false">
         <translation xmi:type="utility:ConstantString" string="Compute"/>
